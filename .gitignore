@@ -1,0 +1,9 @@
+emb_mi/data/
+emb_mi/model/
+emb_mi/preprocess/
+emb_mi/target_model/
+emb_mi/src/tmp.py
+emb_mi/._.
+*/__pycache__
+emails_cleaned.csv
+emails.csv
