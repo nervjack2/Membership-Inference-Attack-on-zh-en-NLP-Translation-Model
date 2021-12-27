@@ -7,3 +7,4 @@ emb_mi/._.
 */__pycache__
 dataset/
 translation/preprocess/opencc/
+splited_data.zip
