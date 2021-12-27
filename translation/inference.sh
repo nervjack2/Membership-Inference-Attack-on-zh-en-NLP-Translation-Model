@@ -1,0 +1,1 @@
+python3 train_src/inference.py --data_path $1 --model_path $2 --save_path $3

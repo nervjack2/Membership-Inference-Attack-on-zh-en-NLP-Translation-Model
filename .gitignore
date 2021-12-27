@@ -5,5 +5,5 @@ emb_mi/target_model/
 emb_mi/src/tmp.py
 emb_mi/._.
 */__pycache__
-emails_cleaned.csv
-emails.csv
+dataset/
+translation/preprocess/opencc/
