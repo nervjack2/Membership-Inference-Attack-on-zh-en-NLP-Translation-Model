@@ -6,5 +6,5 @@ emb_mi/src/tmp.py
 emb_mi/._.
 */__pycache__
 dataset/
-translation/preprocess/opencc/
+translation/preprocess_src/opencc/
 splited_data.zip
