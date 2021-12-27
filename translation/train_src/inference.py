@@ -52,7 +52,7 @@ def main(
             ]
             idx1 += 1
             idx2 += 1
-            
+          
     with open(save_path, 'w') as fp:
         json.dump(out_dict, fp, indent=6) 
 

@@ -33,7 +33,7 @@ def main(
     else:
         prefix = ""
     test_dataset = TestingDataset(test_data, prefix, tokenizer)
-    test_dataloader = DataLoader(test_dataset, batch_size=hp.infer_batch_size, shuffle=False)
+    test_dataloader = DataLoader(test_dataset, batch_size=hp.test_batch_size, shuffle=False)
     model = AutoModelForSeq2SeqLM.from_pretrained(model_path).to(device)
     model.eval()
     score = 0

@@ -8,3 +8,4 @@ emb_mi/._.
 dataset/
 translation/preprocess_src/opencc/
 splited_data.zip
+result_tmp.json

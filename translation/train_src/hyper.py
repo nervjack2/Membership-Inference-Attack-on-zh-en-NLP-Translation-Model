@@ -4,6 +4,7 @@ class hp:
 
     batch_size = 16
     infer_batch_size = 16
+    test_batch_size = 32
     epoch = 1
     lr = 2e-5
     weight_decay=1e-2

@@ -1,6 +1,7 @@
 tmp.py
-checkpoint
+Alice_checkpoint
+Bob_checkpoint
 data 
 splited_data 
 */__pycache__
-*/runs
+runs
