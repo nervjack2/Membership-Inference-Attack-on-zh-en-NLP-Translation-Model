@@ -12,9 +12,8 @@ from transformers import (
     Seq2SeqTrainingArguments,
     Seq2SeqTrainer
 )
-from datasets import load_metric
 from data import InferenceDataset 
-from utils import load_dataset, load_dataset_test
+from utils import load_dataset_test, compute_metrics 
 from generate_algo import Generate
 
 def main(
@@ -36,24 +35,24 @@ def main(
     else:
         prefix = ""
     test_dataset = InferenceDataset(test_data, prefix, tokenizer)
-    test_dataloader = DataLoader(test_dataset, batch_size=1, shuffle=False)
+    test_dataloader = DataLoader(test_dataset, batch_size=hp.infer_batch_size, shuffle=False)
     model = AutoModelForSeq2SeqLM.from_pretrained(model_path).to(device)
-    sacrebleu = datasets.load_metric("sacrebleu")
+    model.eval()
     out_dict = {}
-    idx = 0
-    score = 0
+    idx1 = 0
     for inputs in tqdm(test_dataloader, desc="Generating:"):
         datas = {key: value.to(device) for key,value in inputs.items()} 
         output = Generate(datas, tokenizer, model, decode_algorithm) 
-        out_dict[str(idx)] = [
-            test_data[idx][0],
-            test_data[idx][1],
-            output[0]
-        ]
-        results = sacrebleu.compute(predictions=output, references=[[test_data[idx][0]]])
-        score += round(results["score"], 1)
-        idx += 1
-    print(f'BLUE score: {score/len(test_dataloader)}')
+        idx2 = 0
+        for out in output:
+            out_dict[idx1] = [
+                test_data[idx1][0],
+                test_data[idx1][1],
+                output[idx2]
+            ]
+            idx1 += 1
+            idx2 += 1
+            
     with open(save_path, 'w') as fp:
         json.dump(out_dict, fp, indent=6) 
 

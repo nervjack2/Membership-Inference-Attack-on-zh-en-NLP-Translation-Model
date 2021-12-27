@@ -10,7 +10,7 @@ from transformers import (
     Seq2SeqTrainingArguments,
     Seq2SeqTrainer
 )
-from data import TraningDataset 
+from data import TrainingDataset 
 from utils import load_dataset, compute_metrics
 
 def main(
@@ -30,12 +30,13 @@ def main(
         prefix = "translate English to Romanian: "
     else:
         prefix = ""
-    train_dataset = TraningDataset(train_data, prefix, tokenizer)
-    dev_dataset = TraningDataset(dev_data, prefix, tokenizer) 
+    train_dataset = TrainingDataset(train_data, prefix, tokenizer)
+    dev_dataset = TrainingDataset(dev_data, prefix, tokenizer) 
     model = AutoModelForSeq2SeqLM.from_pretrained(model_checkpoint).to(device)
     model_args = Seq2SeqTrainingArguments(
         save_dir,
-        evaluation_strategy = "epoch",
+        evaluation_strategy = "steps",
+        eval_steps = 1000,
         learning_rate = hp.lr,
         per_device_train_batch_size=hp.batch_size,
         per_device_eval_batch_size=hp.batch_size,
@@ -44,14 +45,14 @@ def main(
         num_train_epochs=hp.epoch,
         predict_with_generate=True,
         fp16=False,
+        load_best_model_at_end=True
     )
     trainer = Seq2SeqTrainer(
         model,
         model_args,
         train_dataset=train_dataset,
         eval_dataset=dev_dataset,
-        tokenizer=tokenizer,
-        compute_metrics=compute_metrics
+        tokenizer=tokenizer
     )
     trainer.train()
 

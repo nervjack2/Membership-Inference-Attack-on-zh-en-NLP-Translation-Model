@@ -1,6 +1,7 @@
 import json
+import numpy as np 
 from os.path import join
-
+from datasets import load_metric
 
 def load_dataset(train_path, dev_path):
     train_dict = json.load(open(train_path, 'r'))
@@ -15,10 +16,13 @@ def load_dataset_test(data_path):
     test_data = list(test_dict.values())
     return test_data
 
-def compute_metrics(eval_preds):
-    preds, labels = eval_preds
-    if isinstance(preds, tuple):
-        preds = preds[0]
+def postprocess_text(preds, labels):
+    preds = [pred.strip() for pred in preds]
+    labels = [[label.strip()] for label in labels]
+
+    return preds, labels
+
+def compute_metrics(preds, labels, tokenizer):
     decoded_preds = tokenizer.batch_decode(preds, skip_special_tokens=True)
 
     # Replace -100 in the labels as we can't decode them.
@@ -28,10 +32,8 @@ def compute_metrics(eval_preds):
     # Some simple post-processing
     decoded_preds, decoded_labels = postprocess_text(decoded_preds, decoded_labels)
 
+    metric = load_metric("sacrebleu")
     result = metric.compute(predictions=decoded_preds, references=decoded_labels)
     result = {"bleu": result["score"]}
 
-    prediction_lens = [np.count_nonzero(pred != tokenizer.pad_token_id) for pred in preds]
-    result["gen_len"] = np.mean(prediction_lens)
-    result = {k: round(v, 4) for k, v in result.items()}
-    return result
+    return round(result['bleu'], 4)
