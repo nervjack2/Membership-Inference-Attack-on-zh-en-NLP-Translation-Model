@@ -21,6 +21,7 @@
 Alice's target model: 
 - AutoModelForSeq2SeqLM with checkpoint "Helsinki-NLP/opus-mt-zh-en"
 - GLUE score: 36.04 
+
 Bob's shadow model:
 - AutoModelForSeq2SeqLM with checkpoint "liam168/trans-opus-mt-zh-en"
 - GLUE score: 34.92
