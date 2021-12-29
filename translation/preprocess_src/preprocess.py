@@ -76,6 +76,24 @@ def main(
     B_train_path = join(output_dir, 'B_train.json')
     with open(B_train_path, 'w') as fp:
         json.dump(B_train_dict, fp, indent=6)
+    # Bob in probe
+    B_in_probe_dict = {}
+    idx = 0
+    for data in UN_data[10000:400000]:
+        B_in_probe_dict[idx] = data 
+        idx += 1 
+    B_in_probe_path = join(output_dir, 'B_in.json')
+    with open(B_in_probe_path, 'w') as fp:
+        json.dump(B_in_probe_dict, fp, indent=6)
+    # Bob out probe 
+    B_out_probe_dict = {}
+    idx = 0
+    for data in UN_data[410000:800000]:
+        B_out_probe_dict[idx] = data 
+        idx += 1
+    B_out_probe_path = join(output_dir, 'B_out.json')
+    with open(B_out_probe_path, 'w') as fp:
+        json.dump(B_out_probe_dict, fp, indent=6)
     # Alice out of domain probe 
     A_ood_probe_dict = {}
     idx = 0

@@ -9,3 +9,6 @@ dataset/
 translation/preprocess_src/opencc/
 splited_data.zip
 result_tmp.json
+*.zip
+translation/Alice_target/
+translation/Bob_shadow/
