@@ -1,8 +1,11 @@
 tmp.py
 Alice_checkpoint
 Bob_checkpoint
+Bob_checkpoint_small
 data 
 splited_data 
 splited_data_v2
+splited_data_v3
 */__pycache__
 runs
+preprocess_src/preprocess_2.py

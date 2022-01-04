@@ -36,7 +36,7 @@ def main(
     model_args = Seq2SeqTrainingArguments(
         save_dir,
         evaluation_strategy = "steps",
-        eval_steps = 1000,
+        eval_steps = 500,
         learning_rate = hp.lr,
         per_device_train_batch_size=hp.batch_size,
         per_device_eval_batch_size=hp.batch_size,

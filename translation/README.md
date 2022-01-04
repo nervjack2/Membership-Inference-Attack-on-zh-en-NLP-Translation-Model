@@ -25,6 +25,12 @@ Alice's target model:
 Bob's shadow model:
 - AutoModelForSeq2SeqLM with checkpoint "liam168/trans-opus-mt-zh-en"
 - GLUE score: 34.92
+- Using 390000 training data
+
+Bob's shadow model (smaller version):
+- AutoModelForSeq2SeqLM with checkpoint "liam168/trans-opus-mt-zh-en"
+- GLUE score: 32.19
+- Using 40000 training data
 
 ## Preprocess 
 Install opencc from this repository for Simplified Chinese to Traditional Chinese translation 
