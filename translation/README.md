@@ -37,4 +37,4 @@ Install opencc from this repository for Simplified Chinese to Traditional Chines
 ```
 https://github.com/yichen0831/opencc-python
 ```
-Or you could also download data which have already been preprocessed by download.sh  
+Or you could also download data which have already been preprocessed by download_dataset.sh  
