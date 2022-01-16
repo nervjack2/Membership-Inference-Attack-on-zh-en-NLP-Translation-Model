@@ -38,3 +38,9 @@ Install opencc from this repository for Simplified Chinese to Traditional Chines
 https://github.com/yichen0831/opencc-python
 ```
 Or you could also download data which have already been preprocessed by download_dataset.sh  
+
+## Classify
+
+- For one sentence per probe, please go to `group_classify.ipynb` for information.
+- For grouping probes, please go to `group_classify2.ipynb` for information.
+- For other classification method, please go to `mt5_train.py` and `mt5_test.py` for information.
